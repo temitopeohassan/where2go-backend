@@ -13,7 +13,13 @@ let places = [
     image: 'event_1.png',
     description:
       'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
-  },
+      location:{
+        latitude: '37.58817',
+          longitude: '-122.4903973',
+          latitudeDelta: '0.005',
+          longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
+        },
+    },
   {
     id: 2,
     type: 'AFRICAN RESTAURANT',
@@ -22,7 +28,13 @@ let places = [
     image: 'event_2.png',
     description:
       'Lorem ipsum dolor sit amet, consectetur elit adipiscing elit. Venenatis pulvinar a amet in, suspendisse vitae, posuere eu tortor et. Und commodo, fermentum, mauris leo eget.',
-  },
+      location:{
+        latitude: '37.58817',
+          longitude: '-122.4903973',
+          latitudeDelta: '0.005',
+          longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
+        },
+    },
    {
     id: 3,
     type: 'PUB',
@@ -31,7 +43,13 @@ let places = [
     image: 'event_3.png',
     description:
       'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
-  },
+      location:{
+        latitude: '37.58817',
+          longitude: '-122.4903973',
+          latitudeDelta: '0.005',
+          longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
+        },
+    },
   {
     id: 4,
     type: 'AFRICAN RESTAURANT',
@@ -40,7 +58,13 @@ let places = [
     image: 'event_4.png',
     description:
       'Lorem ipsum dolor sit amet, consectetur elit adipiscing elit. Venenatis pulvinar a amet in, suspendisse vitae, posuere eu tortor et. Und commodo, fermentum, mauris leo eget.',
-  },
+      location:{
+        latitude: '37.58817',
+          longitude: '-122.4903973',
+          latitudeDelta: '0.005',
+          longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
+        },
+    },
    {
     id: 5,
     type: 'BAR & LOUNGE',
@@ -49,7 +73,13 @@ let places = [
     image: 'event_5.png',
     description:
       'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
-  },
+      location:{
+        latitude: '37.58817',
+          longitude: '-122.4903973',
+          latitudeDelta: '0.005',
+          longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
+        },
+    },
 ];
 
 app.get('/', (req, res) => {
