@@ -12,10 +12,10 @@ let places = [
     startingTime: '2023-09-21 15:00',
     image: 'event_1.png',
     description:
-      'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
+      'Roomy, relaxed pub with regular live music & bar food, plus sports events on the big screen.',
       location:{
-        latitude: '37.58817',
-          longitude: '-122.4903973',
+        latitude: '51.511600',
+          longitude: '-0.133100',
           latitudeDelta: '0.005',
           longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
         },
@@ -27,10 +27,10 @@ let places = [
     startingTime: '2023-09-25 15:00',
     image: 'event_2.png',
     description:
-      'Lorem ipsum dolor sit amet, consectetur elit adipiscing elit. Venenatis pulvinar a amet in, suspendisse vitae, posuere eu tortor et. Und commodo, fermentum, mauris leo eget.',
+      'With 11 thriving branches across the UK & two in Dubai, Enish Restaurant has been serving authentic cuisine for almost decade Preparing dishes from the diverse culture of Nigeria, Enish brings you a real taste of the country and a special twist to some of your favourite dishes.',
       location:{
-        latitude: '37.58817',
-          longitude: '-122.4903973',
+        latitude: '51.4839',
+          longitude: '-0.06635',
           latitudeDelta: '0.005',
           longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
         },
@@ -42,10 +42,10 @@ let places = [
     startingTime: '2023-10-21 11:00',
     image: 'event_3.png',
     description:
-      'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
+      'Traditional Victorian corner pub with tiled exterior, specialising in cask and real ales.',
       location:{
-        latitude: '37.58817',
-          longitude: '-122.4903973',
+        latitude: '51.5005',
+          longitude: '-0.0916',
           latitudeDelta: '0.005',
           longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
         },
@@ -57,10 +57,10 @@ let places = [
     startingTime: '2023-08-25 12:00',
     image: 'event_4.png',
     description:
-      'Lorem ipsum dolor sit amet, consectetur elit adipiscing elit. Venenatis pulvinar a amet in, suspendisse vitae, posuere eu tortor et. Und commodo, fermentum, mauris leo eget.',
+      'Elevated West African dishes are paired with international wines at this warm, upmarket restaurant.',
       location:{
-        latitude: '37.58817',
-          longitude: '-122.4903973',
+        latitude: '51.516994',
+          longitude: '-0.136538',
           latitudeDelta: '0.005',
           longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
         },
@@ -72,10 +72,10 @@ let places = [
     startingTime: '2023-09-21 09:10',
     image: 'event_5.png',
     description:
-      'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
+      'Stylish cocktail lounge bar with banquettes, contemporary chandeliers and pendant lights.',
       location:{
-        latitude: '37.58817',
-          longitude: '-122.4903973',
+        latitude: '51.512071',
+          longitude: '-0.129809',
           latitudeDelta: '0.005',
           longitudeDelta: '0.005 * (SIZES.width / SIZES.height)',
         },
