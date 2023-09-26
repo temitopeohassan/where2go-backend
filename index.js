@@ -10,7 +10,7 @@ let places = [
     type: 'IRISH PUB',
     title: 'Waxy O\' Connors\'s London',
     startingTime: '2023-09-21 15:00',
-    image: '/assets/images/event_1.png',
+    image: 'https://where2go-07jw.onrender.com/assets/images/event_1.png',
     description:
       'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
   },
@@ -19,7 +19,7 @@ let places = [
     type: 'AFRICAN RESTAURANT',
     title: 'Enish',
     startingTime: '2023-09-25 15:00',
-    image: '/assets/images/event_2.png',
+    image: 'https://where2go-07jw.onrender.com/assets/images/event_2.png',
     description:
       'Lorem ipsum dolor sit amet, consectetur elit adipiscing elit. Venenatis pulvinar a amet in, suspendisse vitae, posuere eu tortor et. Und commodo, fermentum, mauris leo eget.',
   },
@@ -28,7 +28,7 @@ let places = [
     type: 'PUB',
     title: 'The Royal Oak',
     startingTime: '2023-10-21 11:00',
-    image: '/assets/images/event_3.png',
+    image: 'https://where2go-07jw.onrender.com/assets/images/event_3.png',
     description:
       'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
   },
@@ -37,7 +37,7 @@ let places = [
     type: 'AFRICAN RESTAURANT',
     title: 'Akoko',
     startingTime: '2023-08-25 12:00',
-    image: '/assets/images/event_4.png',
+    image: 'https://where2go-07jw.onrender.com/assets/images/event_4.png',
     description:
       'Lorem ipsum dolor sit amet, consectetur elit adipiscing elit. Venenatis pulvinar a amet in, suspendisse vitae, posuere eu tortor et. Und commodo, fermentum, mauris leo eget.',
   },
@@ -46,7 +46,7 @@ let places = [
     type: 'BAR & LOUNGE',
     title: 'Ku Lounge',
     startingTime: '2023-09-21 09:10',
-    image: '/assets/images/event_5.png',
+    image: 'https://where2go-07jw.onrender.com/assets/images/event_5.png',
     description:
       'Non exercitation ullamco reprehenderit incididunt. Officia incididunt id exercitation velit aliqua ut deserunt do non. Aliquip sunt dolor enim occaecat ullamco id consectetur .',
   },
