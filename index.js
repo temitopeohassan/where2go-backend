@@ -82,60 +82,43 @@ let places = [
     },
 ];
 
+let Users = [
+  {
+      id: 1, 
+      email: 'user1@email.com',
+      username: 'user1', 
+      password: 'password', 
+      userToken: 'token123'
+  },
+  {
+      id: 2, 
+      email: 'user2@email.com',
+      username: 'user2', 
+      password: 'pass1234', 
+      userToken: 'token12345'
+  },
+  {
+      id: 3, 
+      email: 'testuser@email.com',
+      username: 'testuser', 
+      password: 'testpass', 
+      userToken: 'testtoken'
+  },
+];
+
 app.get('/', (req, res) => {
-  res.send('<h1>Where2goo places</h1>')
+  res.send('<h1>Where2goo Backend</h1>')
 })
 
 app.get('/api/places', (req, res) => {
   res.json(places)
 })
 
-const generateId = () => {
-  const maxId = places.length > 0
-    ? Math.max(...places.map(n => n.id))
-    : 0
-  return maxId + 1
-}
 
-app.post('/api/places', (request, response) => {
-  const body = request.body
-
-  if (!body.content) {
-    return response.status(400).json({ 
-      error: 'content missing' 
-    })
-  }
-
-  const place = {
-    content: body.content,
-    important: body.important || false,
-    date: new Date(),
-    id: generateId(),
-  }
-
-  places = places.concat(place)
-
-  response.json(place)
+app.get('/api/users', (req, res) => {
+  res.json(Users)
 })
 
-app.get('/api/places/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const place = places.find(place => place.id === id)
-
-  if (place) {
-    response.json(place)
-  } else {
-    response.status(404).end()
-  }
-
-})
-
-app.delete('/api/places/:id', (request, response) => {
-  const id = Number(request.params.id)
-  notes = places.filter(place => place.id !== id)
-
-  response.status(204).end()
-})
 
 const PORT = 3001
 app.listen(PORT, () => {
