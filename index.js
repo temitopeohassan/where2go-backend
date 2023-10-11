@@ -88,21 +88,33 @@ let Users = [
       email: 'user1@email.com',
       username: 'user1', 
       password: 'password', 
-      userToken: 'token123'
+      userToken: 'token123',
+      firstName:'Maurice',
+      lastName: 'Mickleson',
+      phoneNumber: '1029384756',
+      avatar: 'avatar1.png'
   },
   {
       id: 2, 
       email: 'user2@email.com',
       username: 'user2', 
       password: 'pass1234', 
-      userToken: 'token12345'
+      userToken: 'token12345',
+      firstName:'Mariam',
+      lastName: 'Goodhew',
+      phoneNumber: '9876543210',
+      avatar: 'avatar2.png'
   },
   {
       id: 3, 
       email: 'testuser@email.com',
       username: 'testuser', 
       password: 'testpass', 
-      userToken: 'testtoken'
+      userToken: 'testtoken',
+      firstName:'Thomas',
+      lastName: 'Anderson',
+      phoneNumber: '1234567890',
+      avatar: 'avatar3.png'
   },
 ];
 
