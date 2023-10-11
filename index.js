@@ -92,6 +92,8 @@ let Users = [
       firstName:'Maurice',
       lastName: 'Mickleson',
       phoneNumber: '1029384756',
+      county: 'London',
+      country: 'United Kingdom',
       cover: 'cover1.png',
       avatar: 'avatar1.png'
   },
@@ -104,6 +106,8 @@ let Users = [
       firstName:'Mariam',
       lastName: 'Goodhew',
       phoneNumber: '9876543210',
+      county: 'Gloucester',
+      country: 'United Kingdom',
       cover: 'cover2.png',
       avatar: 'avatar2.png'
   },
@@ -116,6 +120,8 @@ let Users = [
       firstName:'Thomas',
       lastName: 'Anderson',
       phoneNumber: '1234567890',
+      county: 'Surrey',
+      country: 'United Kingdom',
       cover: 'cover3.png',
       avatar: 'avatar3.png'
   },
