@@ -92,6 +92,7 @@ let Users = [
       firstName:'Maurice',
       lastName: 'Mickleson',
       phoneNumber: '1029384756',
+      cover: 'cover1.png',
       avatar: 'avatar1.png'
   },
   {
@@ -103,6 +104,7 @@ let Users = [
       firstName:'Mariam',
       lastName: 'Goodhew',
       phoneNumber: '9876543210',
+      cover: 'cover2.png',
       avatar: 'avatar2.png'
   },
   {
@@ -114,6 +116,7 @@ let Users = [
       firstName:'Thomas',
       lastName: 'Anderson',
       phoneNumber: '1234567890',
+      cover: 'cover3.png',
       avatar: 'avatar3.png'
   },
 ];
