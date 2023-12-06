@@ -36,10 +36,10 @@ async function getSingleUser(userId) {
   }
 }
 
-async function insertUser(fullName, email, password) {
+async function insertUser(email, fullName, password) {
   const connection = await pool.getConnection();
   try {
-    await connection.query("INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)", [fullName, email, password]);
+    await connection.query("INSERT INTO users (email, fullName, password) VALUES (?, ?, ?)", [email, fullName, password]);
   } finally {
     connection.release();
   }
