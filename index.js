@@ -36,7 +36,7 @@ async function getSingleUser(userId) {
   }
 }
 
-async function insertUser(name, email, password) {
+async function insertUser(fullName, email, password) {
   const connection = await pool.getConnection();
   try {
     await connection.query("INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)", [fullName, email, password]);
@@ -147,9 +147,9 @@ app.get('/api/users', async (req, res) => {
   res.json(users);
 });
 
-app.post("/users", async (req,res)=>{
+app.post("/api/users", async (req,res)=>{
   const { email, fullName, password } = req.body
-  const user = await createUser(email, fullName, password)
+  const user = await insertUser(email, fullName, password)
   res.send(user)
   })
 
