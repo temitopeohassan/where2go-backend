@@ -147,7 +147,7 @@ app.get('/api/users', async (req, res) => {
   res.json(users);
 });
 
-app.post("/register", async (req,res)=>{
+app.post("/api/users", async (req,res)=>{
   const { email, fullName, password } = req.body
   const user = await insertUser(email, fullName, password)
   res.send(user)
