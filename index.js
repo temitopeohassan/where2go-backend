@@ -39,7 +39,7 @@ async function getSingleUser(userId) {
 async function insertUser(name, email, password) {
   const connection = await pool.getConnection();
   try {
-    await connection.query("INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)", [name, email, password]);
+    await connection.query("INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)", [fullName, email, password]);
   } finally {
     connection.release();
   }
@@ -146,6 +146,12 @@ app.get('/api/users', async (req, res) => {
   const users = await getUsers();
   res.json(users);
 });
+
+app.post("/users", async (req,res)=>{
+  const { email, fullName, password } = req.body
+  const user = await createUser(email, fullName, password)
+  res.send(user)
+  })
 
 const PORT = 3001
 app.listen(PORT, () => {
