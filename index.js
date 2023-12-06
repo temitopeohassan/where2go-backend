@@ -1,8 +1,59 @@
 const express = require('express')
 const app = express()
 
+
 app.use(express.json())
 app.use(express.static('public'));
+
+require('dotenv').config();
+
+const mysql = require('mysql2/promise');
+
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+});
+
+ async function getUsers() {
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query("SELECT * FROM users");
+    return rows;
+  } finally {
+    connection.release();
+  }
+}
+
+async function getSingleUser(userId) {
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query("SELECT * FROM users WHERE id = ?", [userId]);
+    return rows;
+  } finally {
+    connection.release();
+  }
+}
+
+async function insertUser(name, email, password) {
+  const connection = await pool.getConnection();
+  try {
+    await connection.query("INSERT INTO users (fullName, email, password) VALUES (?, ?, ?)", [name, email, password]);
+  } finally {
+    connection.release();
+  }
+}
+
+async function fetchData() {
+  const users = await getUsers();
+
+  const userId = 2; // Replace with the desired user ID
+  const singleUser = await getSingleUser(userId);
+}
+
+// Call the async function
+fetchData();
 
 let places = [
   {
@@ -82,46 +133,6 @@ let places = [
     },
 ];
 
-let Users = [
-  {
-      id: 1, 
-      email: 'user1@email.com',
-      password: 'password', 
-      userToken: 'token123',
-      fullName:'Maurice Mickelwhite',
-      lastName: '',
-      phoneNumber: '1029384756',
-      county: 'London',
-      country: 'United Kingdom',
-      cover: 'cover1.png',
-      avatar: 'avatar1.png'
-  },
-  {
-      id: 2, 
-      email: 'user2@email.com',
-      password: 'pass1234', 
-      userToken: 'token12345',
-      fullName:'Mariam Goodhew',
-      phoneNumber: '9876543210',
-      county: 'Gloucester',
-      country: 'United Kingdom',
-      cover: 'cover2.png',
-      avatar: 'avatar2.png'
-  },
-  {
-      id: 3, 
-      email: 'testuser@email.com',
-      password: 'testpass', 
-      userToken: 'testtoken',
-      fullName:'Thomas Anderson',
-      phoneNumber: '1234567890',
-      county: 'Surrey',
-      country: 'United Kingdom',
-      cover: 'cover3.png',
-      avatar: 'avatar3.png'
-  },
-];
-
 app.get('/', (req, res) => {
   res.send('<h1>Where2goo Backend</h1>')
 })
@@ -131,10 +142,10 @@ app.get('/api/places', (req, res) => {
 })
 
 
-app.get('/api/users', (req, res) => {
-  res.json(Users)
-})
-
+app.get('/api/users', async (req, res) => {
+  const users = await getUsers();
+  res.json(users);
+});
 
 const PORT = 3001
 app.listen(PORT, () => {
