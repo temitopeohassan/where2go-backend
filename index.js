@@ -84,7 +84,7 @@ app.get('/api/places',async (req, res) => {
   res.json(places);
 })
 
-app.get('/api/places/:id',async (req, res) => {
+app.get('/api/places/:placeId',async (req, res) => {
   const id = req.params.id
   const places = await getSinglePlace(id);
   res.json(places);
