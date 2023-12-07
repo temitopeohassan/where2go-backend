@@ -26,6 +26,16 @@ async function getPlaces() {
   }
 }
 
+async function getSinglePlace(id) {
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query("SELECT * FROM places WHERE id = ?", [id]);
+    return rows;
+  } finally {
+    connection.release();
+  }
+}
+
  async function getUsers() {
   const connection = await pool.getConnection();
   try {
@@ -36,10 +46,10 @@ async function getPlaces() {
   }
 }
 
-async function getSingleUser(userId) {
+async function getSingleUser(id) {
   const connection = await pool.getConnection();
   try {
-    const [rows] = await connection.query("SELECT * FROM users WHERE id = ?", [userId]);
+    const [rows] = await connection.query("SELECT * FROM users WHERE id = ?", [id]);
     return rows;
   } finally {
     connection.release();
@@ -74,6 +84,11 @@ app.get('/api/places',async (req, res) => {
   res.json(places);
 })
 
+app.get('/api/places/:id',async (req, res) => {
+  const id = req.params.id
+  const places = await getSinglePlace(id);
+  res.json(places);
+})
 
 app.get('/api/users', async (req, res) => {
   const users = await getUsers();
