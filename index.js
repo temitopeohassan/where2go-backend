@@ -36,6 +36,20 @@ async function getSinglePlace(id) {
   }
 }
 
+async function getComments(placeId) {
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query(`
+      SELECT comments.id, comments.fullName, comments.comment, places.id as placeId
+      FROM comments
+      JOIN places ON comments.places_id = places.id
+      WHERE places.id = ?;`, [placeId]);
+    return rows;
+  } finally {
+    connection.release();
+  }
+}
+
  async function getUsers() {
   const connection = await pool.getConnection();
   try {
@@ -89,6 +103,12 @@ app.get('/api/places/:placeId',async (req, res) => {
   const places = await getSinglePlace(id);
   res.json(places);
 })
+
+app.get('/api/comments/:placeId', async (req, res) => {
+  const placeId = req.params.placeId; // Change this line
+  const comments = await getComments(placeId);
+  res.json(comments);
+});
 
 app.get('/api/users', async (req, res) => {
   const users = await getUsers();
