@@ -115,6 +115,12 @@ app.get('/api/users', async (req, res) => {
   res.json(users);
 });
 
+app.get('/api/users/:id',async (req, res) => {
+  const id = req.params.id; // Change this line
+  const places = await getSingleUser(id);
+  res.json(places);
+})
+
 app.post("/api/users", async (req,res)=>{
   const { email, fullName, password } = req.body
   const user = await insertUser(email, fullName, password)
