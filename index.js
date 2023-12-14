@@ -87,11 +87,11 @@ async function getFavourites(userId) {
   const connection = await pool.getConnection();
   try {
     const [rows] = await connection.query(`
-      SELECT favourites.id, favourites.status, places.id as placeId, places.type, places.title, places.image, users.id as userId
-      FROM favourites
-      JOIN places ON favourites.places_id = places.id
-      JOIN users ON favourites.users_id = users.id
-      WHERE users.id = ?;
+    SELECT favourites.id, favourites.status, places.id as placeId, places.type, places.title, places.image, users.id as userId
+    FROM favourites
+    JOIN places ON favourites.places_id = places.id
+    JOIN users ON favourites.users_id = users.id
+    WHERE users_id = ?;
     `, [userId]);
     return rows;
   } finally {
