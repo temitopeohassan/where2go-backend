@@ -91,7 +91,7 @@ async function getFavourites(userId) {
       FROM favourites
       JOIN places ON favourites.places_id = places.id
       JOIN users ON favourites.users_id = users.id
-      WHERE users.id = 1;
+      WHERE users.id = ?;
     `, [userId]);
     return rows;
   } finally {
