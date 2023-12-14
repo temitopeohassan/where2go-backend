@@ -60,9 +60,10 @@ async function getComments(placeId) {
   try {
     const [rows] = await connection.query(`
       SELECT comments.id, comments.fullName, comments.comment, places.id as placeId
-      FROM comments
-      JOIN places ON comments.places_id = places.id
-      WHERE places.id = ?;`, [placeId]);
+FROM comments
+JOIN places ON comments.places_id = places.id
+WHERE places.id = ?
+ORDER BY comments.time DESC;`, [placeId]);
     return rows;
   } finally {
     connection.release();
