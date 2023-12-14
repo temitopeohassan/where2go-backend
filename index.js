@@ -96,7 +96,7 @@ async function getFavourites(userId) {
   }
 }
 
-async function getSingleUser(userIdFromContext) {
+async function getSingleUser(id) {
   const connection = await pool.getConnection();
   try {
     const [rows] = await connection.query("SELECT * FROM users WHERE id = ?", [id]);
@@ -152,10 +152,11 @@ app.get('/api/users', async (req, res) => {
 });
 
 app.get('/api/users/:id',async (req, res) => {
-  const userIdFromContext = req.context.userId;
-  const users = await getSingleUser((userIdFromContext));
-  res.json(users);
+  const id = req.params.id; // Change this line
+  const places = await getSingleUser(id);
+  res.json(places);
 })
+
 
 app.post("/api/users", async (req,res)=>{
   const { email, fullName, password } = req.body
