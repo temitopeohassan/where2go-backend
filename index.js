@@ -69,6 +69,16 @@ async function getComments(placeId) {
   }
 }
 
+async function insertComment(places_id, fullName, comment) {
+  const connection = await pool.getConnection();
+  try {
+    await connection.query("INSERT INTO users (places_id, fullName, comment) VALUES (?, ?, ?)", [places_id, fullName, comment]);
+  } finally {
+    connection.release();
+  }
+}
+
+
 async function getFavourites(userId) {
   const connection = await pool.getConnection();
   try {
@@ -146,6 +156,13 @@ app.get('/api/comments/:placeId', async (req, res) => {
   res.json(comments);
 });
 
+app.post("/api/comments", async (req,res)=>{
+  const { places_id, fullName, comment } = req.body
+  const comments = await insertComment(places_id, fullName, comment)
+  res.send(comments)
+  })
+
+
 app.get('/api/users', async (req, res) => {
   const users = await getUsers();
   res.json(users);
@@ -153,8 +170,8 @@ app.get('/api/users', async (req, res) => {
 
 app.get('/api/users/:id',async (req, res) => {
   const id = req.params.id; // Change this line
-  const places = await getSingleUser(id);
-  res.json(places);
+  const users = await getSingleUser(id);
+  res.json(users);
 })
 
 
