@@ -16,6 +16,25 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DATABASE,
 });
 
+const setContext = (req, res, next) => {
+  // Set your context data here
+  req.context = {
+    userId: 'defaultUserId', // Set your default or initial userId here
+    // other context data
+  };
+  next();
+};
+
+// Assuming you have middleware to set context
+app.use((req, res, next) => {
+  req.context = {
+    userId: 'defaultUserId', // Set your default or initial userId here
+    // other context data
+  };
+  next();
+});
+
+
 async function getPlaces() {
   const connection = await pool.getConnection();
   try {
@@ -50,6 +69,23 @@ async function getComments(placeId) {
   }
 }
 
+async function getFavourites(userId) {
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query(`
+      SELECT favourites.id, favourites.status, places.id as placeId, places.type, places.title, places.image, users.id as userId
+      FROM favourites
+      JOIN places ON favourites.places_id = places.id
+      JOIN users ON favourites.users_id = users.id
+      WHERE users.id = ?;
+    `, [userId]);
+    return rows;
+  } finally {
+    connection.release();
+  }
+}
+
+
  async function getUsers() {
   const connection = await pool.getConnection();
   try {
@@ -60,7 +96,7 @@ async function getComments(placeId) {
   }
 }
 
-async function getSingleUser(id) {
+async function getSingleUser(userIdFromContext) {
   const connection = await pool.getConnection();
   try {
     const [rows] = await connection.query("SELECT * FROM users WHERE id = ?", [id]);
@@ -116,9 +152,9 @@ app.get('/api/users', async (req, res) => {
 });
 
 app.get('/api/users/:id',async (req, res) => {
-  const id = req.params.id; // Change this line
-  const places = await getSingleUser(id);
-  res.json(places);
+  const userIdFromContext = req.context.userId;
+  const users = await getSingleUser((userIdFromContext));
+  res.json(users);
 })
 
 app.post("/api/users", async (req,res)=>{
@@ -126,6 +162,13 @@ app.post("/api/users", async (req,res)=>{
   const user = await insertUser(email, fullName, password)
   res.send(user)
   })
+
+  app.get('/api/favourites/:userId', async (req, res) => {
+    const userIdFromContext = req.context.userId; // Assuming you store userId in context
+    const favourites = await getFavourites(userIdFromContext);
+    res.json(favourites);
+  });
+  
 
 const PORT = 3001
 app.listen(PORT, () => {
