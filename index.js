@@ -72,7 +72,10 @@ async function getComments(placeId) {
 async function insertComment(places_id, fullName, comment) {
   const connection = await pool.getConnection();
   try {
-    await connection.query("INSERT INTO users (places_id, fullName, comment) VALUES (?, ?, ?)", [places_id, fullName, comment]);
+    await connection.query(
+      "INSERT INTO comments (places_id, fullName, comment) VALUES (?, ?, ?)",
+      [places_id, fullName, comment]
+    );
   } finally {
     connection.release();
   }
@@ -156,11 +159,16 @@ app.get('/api/comments/:placeId', async (req, res) => {
   res.json(comments);
 });
 
-app.post("/api/comments", async (req,res)=>{
-  const { places_id, fullName, comment } = req.body
-  const comments = await insertComment(places_id, fullName, comment)
-  res.send(comments)
-  })
+app.post("/api/comments", async (req, res) => {
+  try {
+    const { place_id, fullName, comment } = req.body;
+    await insertComment(place_id, fullName, comment);
+    res.status(200).json({ message: 'Comment posted successfully' });
+  } catch (error) {
+    console.error('Error posting comment:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 app.get('/api/users', async (req, res) => {
