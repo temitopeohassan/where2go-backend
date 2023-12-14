@@ -151,7 +151,7 @@ app.get('/api/users', async (req, res) => {
   res.json(users);
 });
 
-app.get('/api/users/:id',async (req, res) => {
+app.get('/api/users/:userId',async (req, res) => {
   const userIdFromContext = req.context.userId;
   const users = await getSingleUser((userIdFromContext));
   res.json(users);
