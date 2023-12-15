@@ -87,17 +87,18 @@ async function getFavourites(userId) {
   const connection = await pool.getConnection();
   try {
     const [rows] = await connection.query(`
-    SELECT favourites.id, favourites.status, places.id as placeId, places.type, places.title, places.image, users.id as userId
-    FROM favourites
-    JOIN places ON favourites.places_id = places.id
-    JOIN users ON favourites.users_id = users.id
-    WHERE users_id = ?;
+      SELECT favourites.id, favourites.status, places.id as placeId, places.type, places.title, places.image, users.id as userId
+      FROM favourites
+      JOIN places ON favourites.places_id = places.id
+      JOIN users ON favourites.users_id = users.id
+      WHERE users_id = ?;
     `, [userId]);
     return rows;
   } finally {
     connection.release();
   }
 }
+
 
 
  async function getUsers() {
@@ -236,12 +237,11 @@ app.post("/api/users", async (req,res)=>{
       }
     });
     
-  app.get('/api/favourites/:userId', async (req, res) => {
-    const userIdFromContext = req.context.userId; // Assuming you store userId in context
-    const favourites = await getFavourites(userIdFromContext);
-    res.json(favourites);
-  });
-  
+    app.get('/api/favourites/:userId', async (req, res) => {
+      const userId = req.params.userId;
+      const favourites = await getFavourites(userId);
+      res.json(favourites);
+    });
 
 const PORT = 3001
 app.listen(PORT, () => {
