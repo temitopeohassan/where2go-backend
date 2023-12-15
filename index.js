@@ -93,7 +93,7 @@ async function getFavourites(userId) {
       JOIN users ON favourites.users_id = users.id
       WHERE users_id = ?;
     `, [userId]);
-    return rows;
+    return rows || []; // Return an empty array if no favorites are found
   } finally {
     connection.release();
   }
