@@ -226,8 +226,8 @@ app.post("/api/users", async (req,res)=>{
     })
 
 
-    app.delete("/api/favourites", async (req, res) => {
-      const { places_id, users_id } = req.body;
+    app.delete("/api/favourites/:places_id/:users_id", async (req, res) => {
+      const { places_id, users_id } = req.params;
       
       try {
         await deleteFavourite(places_id, users_id);
@@ -236,6 +236,7 @@ app.post("/api/users", async (req,res)=>{
         res.status(500).send({ success: false, message: "Failed to delete favorite" });
       }
     });
+    
     
     app.get('/api/favourites/:userId', async (req, res) => {
       const userId = req.params.userId;
