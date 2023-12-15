@@ -129,6 +129,34 @@ async function insertUser(email, fullName, password) {
   }
 }
 
+async function insertFavourite(places_id, users_id, status) {
+  const connection = await pool.getConnection();
+  try {
+    await connection.query("INSERT INTO favourites (places_id, users_id, status) VALUES (?, ?, ?)", [places_id, users_id, status]);
+  } catch (error) {
+    // Handle the error, you can log it or throw a custom error
+    console.error("Error inserting favorite:", error);
+    throw new Error("Failed to insert favorite");
+  } finally {
+    connection.release();
+  }
+}
+
+async function deleteFavourite(places_id, users_id) {
+  const connection = await pool.getConnection();
+  try {
+    await connection.query("DELETE FROM favourites WHERE places_id = ? AND users_id = ?", [places_id, users_id]);
+  } catch (error) {
+    console.error("Error deleting favorite:", error);
+    throw new Error("Failed to delete favorite");
+  } finally {
+    connection.release();
+  }
+}
+
+
+
+
 async function fetchData() {
   const users = await getUsers();
 
@@ -190,6 +218,24 @@ app.post("/api/users", async (req,res)=>{
   res.send(user)
   })
 
+  app.post("/api/favourites", async (req,res)=>{
+    const { places_id, users_id, status } = req.body
+    const favourite = await insertFavourite(places_id, users_id, status)
+    res.send(favourite)
+    })
+
+
+    app.delete("/api/favourites", async (req, res) => {
+      const { places_id, users_id } = req.body;
+      
+      try {
+        await deleteFavourite(places_id, users_id);
+        res.send({ success: true, message: "Favorite deleted successfully" });
+      } catch (error) {
+        res.status(500).send({ success: false, message: "Failed to delete favorite" });
+      }
+    });
+    
   app.get('/api/favourites/:userId', async (req, res) => {
     const userIdFromContext = req.context.userId; // Assuming you store userId in context
     const favourites = await getFavourites(userIdFromContext);
