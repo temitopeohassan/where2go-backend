@@ -1,14 +1,21 @@
-const express = require('express')
-const app = express()
 
 
-app.use(express.json())
+
+
+
+
+
+const express = require('express');
+const twilioRouter = require('./src/routes/twilio-sms');
+
+const app = express();
+
+app.use(express.json());
 app.use(express.static('public'));
+app.use('/twilio-sms', twilioRouter);
 
 require('dotenv').config();
 const queries = require('./queries');
-
-console.log(queries);
 
 
 app.get('/', (req, res) => {
@@ -21,13 +28,13 @@ app.get('/api/places',async (req, res) => {
 })
 
 app.get('/api/places/:placeId',async (req, res) => {
-  const id = req.params.placeId; // Change this line
+  const id = req.params.placeId; 
   const places = await queries.getSinglePlace(id);
   res.json(places);
 })
 
 app.get('/api/comments/:placeId', async (req, res) => {
-  const placeId = req.params.placeId; // Change this line
+  const placeId = req.params.placeId; 
   const comments = await queries.getComments(placeId);
   res.json(comments);
 });
@@ -50,7 +57,7 @@ app.get('/api/users', async (req, res) => {
 });
 
 app.get('/api/users/:id',async (req, res) => {
-  const id = req.params.id; // Change this line
+  const id = req.params.id; 
   const users = await queries.getSingleUser(id);
   res.json(users);
 })
